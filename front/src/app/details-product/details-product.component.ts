@@ -15,14 +15,14 @@ export class DetailsProductComponent implements OnInit {
   newQuantity;
   salePrice;
   // copyDiscount;
-  copyQuantity
+  // copyQuantity
 
   constructor(public productsService: ProductsService) {
     // this.products = [];
     // this.product = { name: 'Selectioner un produit', price: 0, discount: 0, quantityInStock: 0 };
     this.salePrice = 0;
     // this.copyDiscount=0;
-    this.copyQuantity=0;
+    // this.copyQuantity=0;
     // console.log(this.products)
 
 
@@ -107,7 +107,7 @@ export class DetailsProductComponent implements OnInit {
 
   addQuantity(item) {
 
-    console.log(this.copyQuantity , this.newQuantity)
+    // console.log(this.copyQuantity , this.newQuantity)
 
     if (this.newQuantity) {
       item.quantityInStock+= this.newQuantity
@@ -123,16 +123,16 @@ export class DetailsProductComponent implements OnInit {
 
   removeQuantity(item) {
 
-    console.log(this.copyQuantity , this.newQuantity)
+    // console.log(this.copyQuantity , this.newQuantity)
     if (item.quantityInStock < this.newQuantity) {
   
       alert('VOUS ENLEVEZ TTROP DE STOCK');
-      console.log("BOOOP")
+      // console.log("BOOOP")
 
     }
 
     else if (this.newQuantity) {
-      console.log("this.copyQuantity > this.newQuantity")
+      // console.log("this.copyQuantity > this.newQuantity")
 
       item.quantityInStock-= this.newQuantity
       this.productsService.removeQuantity(item.tig_id, this.newQuantity).subscribe(res => {
