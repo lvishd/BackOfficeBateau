@@ -4,7 +4,7 @@ lancer le back:
 > python manage.py runserver
 
 lancer le front:
-> ng runserver
+> ng serve
 
 
 ## Debug
