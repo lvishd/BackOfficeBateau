@@ -39,12 +39,15 @@
     <li>
       Promotion de {{product.discount}} % 
     </li>
-    <li>
-      <input type="number" class="col-xs-2 margin-bottom-space" id="newPromotion" placeholder=""
-        [(ngModel)]='newPromotion'>
-    </li>
-    <button class="btn btn-outline-dark" (click)="onModifyPromotion(product);addSale(product)">Modifier</button>
+    <div>
+      <input type="number" class="col-xs-2 margin-bottom-space" id="newPromotion" placeholder="%"
+      [(ngModel)]='newPromotion'>
+      
+      <button class=" btn-outline-dark" (click)="onModifyPromotion(product);addSale(product)">Appliquer</button>
+  
 
+    </div>
+ 
     <br />   <br />   <br />
 
     <div class="margin-bottom-space" >
@@ -59,9 +62,9 @@
       </div>
       
         <div class="raw">
-        <input type="number" class="col-xs-2 margin-bottom-space" id="newPromotion" placeholder=""
+        <input type="number" class="col-xs-2 margin-bottom-space" id="newPromotion" placeholder="Quantité"
         [(ngModel)]='newQuantity'>
-        <button class="btn btn-outline-dark horizontal-space" (click)="addQuantity(product)">Appliquer</button>
+        <button class=" btn-outline-dark horizontal-space" (click)="addQuantity(product)">Appliquer</button>
 
         <!-- <button class="btn btn-danger " (click)="removeQuantity(product)">Enlever</button> -->
       </div>
