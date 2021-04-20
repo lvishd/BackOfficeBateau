@@ -13,44 +13,60 @@
 </div>
 
 <div id="infosProduct" class="card col-sm-6 d-flex p-2 container-fluid">
-  <h1>Page d'affichage du produit</h1>
   <ul>
+    <h1>
+      {{product.name}}
+    </h1>
+
+
+    <h1>
+       {{salePrice}} €  
+    </h1>
     <li>
-      Nom : {{product.name}}
+       / {{product.unit}} 
     </li>
     <li>
-      Prix : {{product.price}} €
-    </li>
-    <li>
-      Promotion : {{copyDiscount}} %
-    </li>
-    <li>
-      Prix en promotion : {{salePrice}} €
-    </li>
-    <div class="margin-bottom-space" >
-    <ul class ="container-fluid">
-    <li class="raw">
-      <div class="raw">
-      <input type="number" class="col-xs-2 margin-bottom-space" id="newPromotion" placeholder="Ajouter Quantité"
-        [(ngModel)]='newQuantity'>
-      </div>
-        <div class="raw">
-        <button class="btn btn-success horizontal-space" (click)="addQuantity(product)">+</button>
-        <button class="btn btn-danger " (click)="removeQuantity(product)">-</button>
-      </div>
-    </li>
-  </ul>
-</div>
-    <li>
-      <input type="number" class="col-xs-2 margin-bottom-space" id="newPromotion" placeholder="Nouvelle Promotion"
-        [(ngModel)]='newPromotion'>
+      Prix sans promo : {{product.price}} €
     </li>
 
+    <br />   <br />  
+
     <li>
-      <button class="btn btn-primary" (click)="onModifyPromotion(product);addSale(product)">ModifierPromotion</button>
+      Promotion de {{product.discount}} % 
     </li>
     <li>
-      Quantité en stock : {{product.quantityInStock}}
+      <input type="number" class="col-xs-2 margin-bottom-space" id="newPromotion" placeholder=""
+        [(ngModel)]='newPromotion'>
+    </li>
+    <button class="btn btn-primary" (click)="onModifyPromotion(product);addSale(product)">Modifier</button>
+
+    <br />   <br />   <br />
+
+    <div class="margin-bottom-space" >
+    <ul class ="container-fluid">
+      <li>
+        En stock : {{product.quantityInStock}}
+      </li>
+    <li class="raw">
+      
+      <div class="raw">
+
+      </div>
+      
+        <div class="raw">
+        <button class="btn btn-success horizontal-space" (click)="addQuantity(product)">Ajouter</button>
+        <input type="number" class="col-xs-2 margin-bottom-space" id="newPromotion" placeholder=""
+        [(ngModel)]='newQuantity'>
+        <button class="btn btn-danger " (click)="removeQuantity(product)">Enlever</button>
+      </div>
     </li>
   </ul>
 </div>
+
+
+    <li>
+    </li>
+
+  </ul>
+</div>
+
