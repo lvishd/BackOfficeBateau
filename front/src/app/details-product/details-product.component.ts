@@ -109,7 +109,7 @@ export class DetailsProductComponent implements OnInit {
 
     // console.log(this.copyQuantity , this.newQuantity)
 
-    if (this.newQuantity) {
+    if (this.newQuantity > 0) {
       item.quantityInStock+= this.newQuantity
       this.productsService.addQuantity(item.tig_id, this.newQuantity).subscribe(res => {
         this.product = res;
@@ -118,6 +118,12 @@ export class DetailsProductComponent implements OnInit {
           alert('failed loading json data');
         });
       this.getProductsAll();
+    }
+    else{
+      this.newQuantity*=-1
+      this.removeQuantity(item)
+
+
     }
   } 
 

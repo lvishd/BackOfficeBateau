@@ -60,12 +60,21 @@ export class ManageStockComponent implements OnInit {
 
   addQuantity() {
     for (let tig_id = 0; tig_id < this.newQuantity.length; tig_id++) {
-      if (this.newQuantity[tig_id]) {
+      if (this.newQuantity[tig_id] < 0){
+        this.newQuantity[tig_id]=this.newQuantity[tig_id]*(-1)
+        this.productsService.removeQuantity(tig_id, this.newQuantity[tig_id]).subscribe(res => {
+          res;
+        },
+          (err) => {
+            alert(err + 'failed loading json data(Remove');
+          });
+      }
+      else if (this.newQuantity[tig_id]) {
         this.productsService.addQuantity(tig_id, this.newQuantity[tig_id]).subscribe(res => {
           res;
         },
           (err) => {
-            alert(err + 'failed loading json data');
+            alert(err + 'failed loading json Ddata');
           });
       }
     }
