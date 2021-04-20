@@ -4,7 +4,7 @@
   <div class="row">
     <!-- Boucle for -->
   <div *ngFor="let category of categories">
-    <h5 class="card-title" style="text-align:center">{{category.name}}</h5>
+    <h1 class="card-title" style="text-align:center">{{category.nameCategory}}</h1>
     <div class="card">
       <div class="card-body justify-content-md-center">
         <table class="table container-fluid justify-content-md-center">
@@ -16,8 +16,8 @@
               <th scope="col">Quantité</th>
               <th scope="col">Vendus</th>
               <th scope="col">Commentaires</th>
-              <th scope="col">Ajout <br> Stock</th>
-              <th scope="col">Ajout <br> promo</th>
+              <th scope="col">Modifier <br> Stock</th>
+              <th scope="col">Modifier <br> promo</th>
             </tr>
           </thead>
           <tbody class="table container-fluid justify-content-md-center">
@@ -29,7 +29,7 @@
               <td>{{product.nombre_produit_vendu}}</td>
               <td>{{product.comments}}</td>
               <td>
-                <input type="number" class="small-input"  id="newQuantity" placeholder="..." [(ngModel)]='newQuantity[product.tig_id]'>
+                <input type="number" class="small-input"  id="newQuantity" placeholder="" [(ngModel)]='newQuantity[product.tig_id]'>
               </td>
               <td>
                 <input type="number" class="small-input" id="newPromotion" placeholder="%" [(ngModel)]='newPromotion[product.tig_id]'>

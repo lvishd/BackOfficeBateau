@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductsService } from '../services/products.service';
+import { Component, OnInit } from "@angular/core";
+import { ProductsService } from "../services/products.service";
 
 @Component({
-  selector: 'app-manage-stock',
-  templateUrl: './manage-stock.component.html',
-  styleUrls: ['./manage-stock.component.css']
+  selector: "app-manage-stock",
+  templateUrl: "./manage-stock.component.html",
+  styleUrls: ["./manage-stock.component.css"],
 })
 export class ManageStockComponent implements OnInit {
   productsPoisson;
@@ -13,12 +13,17 @@ export class ManageStockComponent implements OnInit {
   newQuantity;
   newPromotion;
   categories = [
-    { "id": 1, "name": "poissons", "products": null  },
-    { "id": 2, "name": "crustaces", "products": null },
-    { "id": 3, "name": "coquillages", "products": null },
+    { id: 1, name: "poissons", products: null, nameCategory: "Les Poissons" },
+    { id: 2, name: "crustaces", products: null, nameCategory: "Les Crustacés" },
+    {
+      id: 3,
+      name: "coquillages",
+      products: null,
+      nameCategory: "Les Fruits De Mer",
+    },
   ];
 
-  constructor(public productsService: ProductsService) { }
+  constructor(public productsService: ProductsService) {}
 
   ngOnInit() {
     this.newQuantity = [];
@@ -27,61 +32,74 @@ export class ManageStockComponent implements OnInit {
   }
 
   getProductsAll() {
-    for (let i = 0; i < this.categories.length; i++){
+    for (let i = 0; i < this.categories.length; i++) {
       this.getProductsCategory(this.categories[i].name);
-      console.log(this.categories[i].products)
+      console.log(this.categories[i].products);
     }
   }
 
   getProductsCategory(category) {
-    this.productsService.getProductCategories(category).subscribe(res => {
-      for (let i = 0; i < this.categories.length; i++)
-        if (this.categories[i].name == category)
-          this.categories[i].products = res;
-    },
+    this.productsService.getProductCategories(category).subscribe(
+      (res) => {
+        for (let i = 0; i < this.categories.length; i++)
+          if (this.categories[i].name == category)
+            this.categories[i].products = res;
+      },
       (err) => {
-        alert('failed loading json data');
-      });
+        alert("failed loading json data");
+      }
+    );
   }
 
   onModifyPromotion() {
     for (let tig_id = 0; tig_id < this.newPromotion.length; tig_id++) {
       if (this.newPromotion[tig_id]) {
-        this.productsService.setPromotion(tig_id, this.newPromotion[tig_id]).subscribe(res => {
-          res;
-        },
-          (err) => {
-            alert('failed loading json data');
-          });
+        this.productsService
+          .setPromotion(tig_id, this.newPromotion[tig_id])
+          .subscribe(
+            (res) => {
+              res;
+            },
+            (err) => {
+              alert("failed loading json data");
+            }
+          );
       }
     }
-    console.log(this.newPromotion)
+    console.log(this.newPromotion);
   }
 
   addQuantity() {
     for (let tig_id = 0; tig_id < this.newQuantity.length; tig_id++) {
-      if (this.newQuantity[tig_id] < 0){
-        this.newQuantity[tig_id]=this.newQuantity[tig_id]*(-1)
-        this.productsService.removeQuantity(tig_id, this.newQuantity[tig_id]).subscribe(res => {
-          res;
-        },
-          (err) => {
-            alert(err + 'failed loading json data(Remove');
-          });
-      }
-      else if (this.newQuantity[tig_id]) {
-        this.productsService.addQuantity(tig_id, this.newQuantity[tig_id]).subscribe(res => {
-          res;
-        },
-          (err) => {
-            alert(err + 'failed loading json Ddata');
-          });
+      if (this.newQuantity[tig_id] < 0) {
+        this.newQuantity[tig_id] = this.newQuantity[tig_id] * -1;
+        this.productsService
+          .removeQuantity(tig_id, this.newQuantity[tig_id])
+          .subscribe(
+            (res) => {
+              res;
+            },
+            (err) => {
+              alert(err + "failed loading json data(Remove");
+            }
+          );
+      } else if (this.newQuantity[tig_id]) {
+        this.productsService
+          .addQuantity(tig_id, this.newQuantity[tig_id])
+          .subscribe(
+            (res) => {
+              res;
+            },
+            (err) => {
+              alert(err + "failed loading json Ddata");
+            }
+          );
       }
     }
     console.log(this.newQuantity);
   }
 
-  modifyStock(){
+  modifyStock() {
     this.addQuantity();
     this.onModifyPromotion();
     this.getProductsAll();
