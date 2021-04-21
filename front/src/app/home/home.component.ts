@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-// import * as Chart from 'chart.js'
-// import { Color, Label } from 'ng2-charts';
+import {ChartType, ChartDataSets, ChartOptions} from 'chart.js';
+import { Color, Label, } from 'ng2-charts';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +8,114 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent  {
+
+  
+  barChartOptions: ChartOptions = {
+    responsive: true,
+  };
+  barChartLabels: Label[] = ['Apple', 'Banana', 'Kiwifruit', 'Blueberry', 'Orange', 'Grapes'];
+  barChartType: ChartType = 'bar';
+  barChartLegend = true;
+  barChartPlugins = [];
+ 
+  barChartData: ChartDataSets[] = [
+    { data: [45, 37, 60, 70, 46, 33], label: 'Best Fruits' }
+  ];
+ 
+}
+
+//   canvas:any; ctx:any; canvas2:any; ctx2:any; canvas3:any; ctx3:any;
+// ...
+// ngOnInit(){
+// ...
+// this.canvas = document.getElementById('myChart');
+// this.canvas2 = document.getElementById('myChart2');
+// this.canvas3 = document.getElementById('myChart3');
+// this.ctx = this.canvas.getContext('2d');
+// this.ctx2 = this.canvas2.getContext('2d');
+//   this.ctx3 = this.canvas3.getContext('2d');
+//     let myChart = new Chart(this.ctx, {
+//       type: 'bar',
+//       data: {
+//           labels: ["Angular 11", "Angular 10", "Angular 9"],
+//           datasets: [{
+//               label: 'Active Angular Vesrions',
+//               data: [85, 100, 60],
+//               backgroundColor: ["red","blue", "orange"],
+//               borderWidth: 1
+//           }]
+//       },
+//       options: {
+//     legend: {
+//         display: true
+//     },
+//         responsive: true,
+//         display:true,
+//     scales: {
+//         yAxes: [{
+//             ticks: {
+//                 beginAtZero: true
+//             }
+//         }]
+//     }
+//       }
+//     });
+  
+//   let myChart2 = new Chart(this.ctx2, {
+//       type: 'pie',
+//       data: {
+//           labels: ["Angular 11", "Angular 10", "Angular 9"],
+//           datasets: [{
+//               label: 'Active Angular Vesrions',
+//               data: [85, 100, 60],
+//               backgroundColor: ["red","blue", "orange"],
+//               borderWidth: 1
+//           }]
+//       },
+//       options: {
+//     legend: {
+//         display: true
+//     },
+//         responsive: true,
+//         display:true,
+//     scales: {
+//         yAxes: [{
+//             ticks: {
+//                 beginAtZero: true
+//             }
+//         }]
+//     }
+//       }
+//     });
+  
+//   let myChart3 = new Chart(this.ctx3, {
+//       type: 'line',
+//       data: {
+//           labels: ["Angular 11", "Angular 10", "Angular 9"],
+//           datasets: [{
+//               label: 'Active Angular Vesrions',
+//               data: [85, 100, 60],
+//               backgroundColor: ["red","blue", "orange"],
+//               borderWidth: 1
+//           }]
+//       },
+//       options: {
+//     legend: {
+//         display: true
+//     },
+//         responsive: true,
+//         display:true,
+//     scales: {
+//         yAxes: [{
+//             ticks: {
+//                 beginAtZero: true
+//             }
+//         }]
+//     }
+//       }
+//     });
+// }
+// }
   // title = 'angular8chartjs';
   // canvas: any;
   // ctx: any;
@@ -66,4 +174,4 @@ export class HomeComponent  {
       
   //   });
   // }
-}
+// }

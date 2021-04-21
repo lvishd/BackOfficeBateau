@@ -19,7 +19,7 @@ export class DetailsProductComponent implements OnInit {
 
   constructor(public productsService: ProductsService) {
     // this.products = [];
-    // this.product=this.products[14];
+    // this.product = { name: 'Selectioner un produit', price: 0, discount: 0, quantityInStock: 0 };
     this.salePrice = 0;
     // this.copyDiscount=0;
     // this.copyQuantity=0;
@@ -29,31 +29,26 @@ export class DetailsProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getProductsAllcopy();
-    
+    this.getProductsAllinit();
     // this.addSale(this.products[0]);
     // this.getProductId(12)
     // console.log(this.products)
 
-    this.getProductId(12)
-    this.getProductId(2)
-    // this.getProductId(this.products[1].tig_id)
-
-    
 
     // this.getProductId(1);
-    this.onSelectProduct(this.products[8].tig_id);
+    this.onSelectProduct(1);
     // console.log(this.product)
-    this.product=this.products[1];
   }
 
-  getProductsAllcopy() {
+  
+  getProductsAllinit() {
     this.productsService.getProducts().subscribe(res => {
       this.products = res;
       this.product=this.products[0];
+      this.salePrice = Math.round(((this.product.price / 100) * (100 - this.product.discount)) * 100) / 100
+
       // console.log(this.products[1])
       console.log(this.products)
-      this.salePrice = Math.round(((this.products[0].price / 100) * (100 - this.products[0].discount)) * 100) / 100
 
       
 
@@ -62,7 +57,6 @@ export class DetailsProductComponent implements OnInit {
         alert('failed loading json data');
       });
   }
-
 
   getProductsAll() {
     this.productsService.getProducts().subscribe(res => {
