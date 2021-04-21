@@ -4,6 +4,9 @@ import { ManageStockComponent } from './manage-stock/manage-stock.component';
 import { DetailsProductComponent } from './details-product/details-product.component';
 import { HomeComponent } from './home/home.component';
 //import { HomeComponent } from './home/home.component';
+// import { ChartsModule } from 'ng2-charts';
+import { BrowserModule } from '@angular/platform-browser';
+
 
 
 const routes: Routes = [
@@ -14,7 +17,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),
+    // ChartsModule,
+    BrowserModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
