@@ -26,14 +26,14 @@ export class ManageStockComponent implements OnInit {
     this.getProductsAll();
   }
 
-  getProductsAll() {
+  getProductsAll() { //obtient toute les categories de produits
     for (let i = 0; i < this.categories.length; i++){
       this.getProductsCategory(this.categories[i].name);
       console.log(this.categories[i].products)
     }
   }
 
-  getProductsCategory(category) {
+  getProductsCategory(category) { //obtient la categorie du produit grace au nom
     this.productsService.getProductCategories(category).subscribe(res => {
       for (let i = 0; i < this.categories.length; i++)
         if (this.categories[i].name == category)
@@ -44,7 +44,9 @@ export class ManageStockComponent implements OnInit {
       });
   }
 
-  onModifyPromotion() {
+  
+
+  onModifyPromotion() {  //cette fonction modifie la valeur de promotion a l'index du tableau newPromotion indique
     for (let tig_id = 0; tig_id < this.newPromotion.length; tig_id++) {
       if (this.newPromotion[tig_id]) {
         this.productsService.setPromotion(tig_id, this.newPromotion[tig_id]).subscribe(res => {
