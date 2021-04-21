@@ -12,38 +12,71 @@ export class ManageStockComponent implements OnInit {
   productsCoquillages;
   newQuantity;
   newPromotion;
-  categories = [
-    { id: 1, name: "poissons", products: null, nameCategory: "Les Poissons" },
-    { id: 2, name: "crustaces", products: null, nameCategory: "Les Crustacés" },
-    {
-      id: 3,
-      name: "coquillages",
-      products: null,
-      nameCategory: "Les Fruits De Mer",
-    },
-  ];
+  category;
+  categories; 
+  // = [
+  //   { id: 1, name: "poissons", products: null, nameCategory: "Les Poissons" },
+  //   { id: 2, name: "crustaces", products: null, nameCategory: "Les Crustacés" },
+  //   {
+  //     id: 3,
+  //     name: "coquillages",
+  //     products: null,
+  //     nameCategory: "Les Fruits De Mer",
+  //   },
+  // ];
 
-  constructor(public productsService: ProductsService) {}
+  constructor(public productsService: ProductsService) {
+    this.categories = [
+      { id: 1, name: "poissons", products: null, nameCategory: "Les Poissons" },
+      { id: 2, name: "crustaces", products: null, nameCategory: "Les Crustacés" },
+      {
+        id: 3,
+        name: "coquillages",
+        products: null,
+        nameCategory: "Les Fruits De Mer",
+      },
+    ];
+
+
+
+  }
 
   ngOnInit() {
     this.newQuantity = [];
     this.newPromotion = [];
+    console.log(this.categories[2].nameCategory)
+    console.log(this.category)
+
+    console.log(this.categories)
+    console.log(this.category)
     this.getProductsAll();
+
+
+    console.log(this.categories[0].nameCategory)
+
+    this.getProductId(this.categories[0].nameCategory)
+    // this.onSelectProduct(this.categories[1].nameCategory);
+    // this.category=
   }
 
   getProductsAll() {
     for (let i = 0; i < this.categories.length; i++) {
       this.getProductsCategory(this.categories[i].name);
-      console.log(this.categories[i].products);
+      console.log(this.categories[i].name);
     }
   }
 
-  getProductsCategory(category) {
-    this.productsService.getProductCategories(category).subscribe(
+  getProductsCategory(nom_category) {
+    this.productsService.getProductCategories(nom_category).subscribe(
       (res) => {
+        console.log("lenghth:",this.categories.length);
+
         for (let i = 0; i < this.categories.length; i++)
-          if (this.categories[i].name == category)
+          if (this.categories[i].name == nom_category){
             this.categories[i].products = res;
+            // this.categories[i].nameCategory=nom_category;
+
+          }
       },
       (err) => {
         alert("failed loading json data");
@@ -51,6 +84,23 @@ export class ManageStockComponent implements OnInit {
     );
   }
 
+  onSelectProduct(item) {
+    this.getProductId(item.nameCategory);
+    console.log(item.nameCategory);
+
+    // this.copyDiscount = item.discount
+    // this.copyQuantity = item.quantityInStock
+    // this.addSale(item)
+  }
+
+  getProductId(nameCategory) {
+    for (let p of this.categories) {
+      if (p.nameCategory == nameCategory) {
+        this.category = p;
+        console.log(this.category);
+      }
+    }
+  }
   onModifyPromotion() {
     for (let tig_id = 0; tig_id < this.newPromotion.length; tig_id++) {
       if (this.newPromotion[tig_id]) {
@@ -72,12 +122,13 @@ export class ManageStockComponent implements OnInit {
   addQuantity() {
     for (let tig_id = 0; tig_id < this.newQuantity.length; tig_id++) {
       if (this.newQuantity[tig_id] < 0) {
-        this.newQuantity[tig_id] = this.newQuantity[tig_id] * -1;
+        this.newQuantity[tig_id] *= -1;
         this.productsService
           .removeQuantity(tig_id, this.newQuantity[tig_id])
           .subscribe(
             (res) => {
-              res;
+              res
+              this.getProductsAll();
             },
             (err) => {
               alert(err + "failed loading json data(Remove");
@@ -88,7 +139,8 @@ export class ManageStockComponent implements OnInit {
           .addQuantity(tig_id, this.newQuantity[tig_id])
           .subscribe(
             (res) => {
-              res;
+              res
+              this.getProductsAll();
             },
             (err) => {
               alert(err + "failed loading json Ddata");

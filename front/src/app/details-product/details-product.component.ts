@@ -23,7 +23,6 @@ export class DetailsProductComponent implements OnInit {
     this.salePrice = 0;
     // this.copyDiscount=0;
     // this.copyQuantity=0;
-    // console.log(this.products)
 
 
 
@@ -31,7 +30,10 @@ export class DetailsProductComponent implements OnInit {
 
   ngOnInit() {
     this.getProductsAll();
-    this.addSale(this.products[0]);
+    // this.addSale(this.products[0]);
+    // this.getProductId(12)
+    // console.log(this.products)
+
 
     // this.getProductId(1);
     // this.onSelectProductId(12);
@@ -47,7 +49,7 @@ export class DetailsProductComponent implements OnInit {
       this.products = res;
       // this.product=this.products[0];
       // console.log(this.products[1])
-      // console.log(this.product)
+      console.log(this.products)
 
       
 
@@ -74,6 +76,7 @@ export class DetailsProductComponent implements OnInit {
   }
 
   onSelectProduct(item) {
+    console.log(item)
     this.getProductId(item.tig_id)
     // this.copyDiscount = item.discount
     // this.copyQuantity = item.quantityInStock

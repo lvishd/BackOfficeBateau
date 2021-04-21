@@ -24,10 +24,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+                "node_modules/bootstrap/dist/css/bootstrap.min.css"
+          
             ],
-            "scripts": []
-          },
+            "scripts": [
+              "../node_modules/jquery/dist/jquery.js",
+              "../node_modules/chart.js/dist/Chart.bundle.min.js"
+  ]          },
           "configurations": {
             "production": {
               "fileReplacements": [
@@ -91,8 +95,10 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
-          }
+            "scripts": [
+              "../node_modules/jquery/dist/jquery.js",
+              "../node_modules/chart.js/dist/Chart.bundle.min.js"
+  ]          }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
