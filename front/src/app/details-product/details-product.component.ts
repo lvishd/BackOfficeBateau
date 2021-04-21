@@ -23,31 +23,47 @@ export class DetailsProductComponent implements OnInit {
     this.salePrice = 0;
     // this.copyDiscount=0;
     // this.copyQuantity=0;
-    // console.log(this.products)
 
 
 
   }
 
   ngOnInit() {
-    this.getProductsAll();
-    this.addSale(this.products[0]);
+    this.getProductsAllinit();
+    // this.addSale(this.products[0]);
+    // this.getProductId(12)
+    // console.log(this.products)
+
 
     // this.getProductId(1);
-    // this.onSelectProductId(12);
+    this.onSelectProduct(1);
     // console.log(this.product)
-    // this.product=this.products[1];
   }
 
   
+  getProductsAllinit() {
+    this.productsService.getProducts().subscribe(res => {
+      this.products = res;
+      this.product=this.products[0];
+      this.salePrice = Math.round(((this.product.price / 100) * (100 - this.product.discount)) * 100) / 100
 
+      // console.log(this.products[1])
+      console.log(this.products)
+
+      
+
+    },
+      (err) => {
+        alert('failed loading json data');
+      });
+  }
 
   getProductsAll() {
     this.productsService.getProducts().subscribe(res => {
       this.products = res;
       // this.product=this.products[0];
       // console.log(this.products[1])
-      // console.log(this.product)
+      console.log(this.products)
 
       
 
@@ -74,6 +90,7 @@ export class DetailsProductComponent implements OnInit {
   }
 
   onSelectProduct(item) {
+    console.log(item)
     this.getProductId(item.tig_id)
     // this.copyDiscount = item.discount
     // this.copyQuantity = item.quantityInStock

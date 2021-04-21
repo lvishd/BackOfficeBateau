@@ -1,54 +1,56 @@
+/* @import '~bootstrap/dist/css/bootstrap.min.css'; */
+
 /* You can add global styles to this file, and also import other style files */
 body {
-  font-family: 'Montserrat', sans-serif;
-}
-hr.solid {
-  border-top: 3px solid #bbb;
-}
-
-.margin-bottom-space {
-  margin-bottom:10px
-}
-
-.horizontal-space {
-  margin-right: 10px;
-}
-
-th  {
-  font-size: 14px !important;
-}
-
-.small-input {
-  width:100% !important
-}
-
-td {
-  width: 80%;
-}
-
-.anavlink {
-  background-color: #0d6efd;
-  color:#fff !important;
-  /* border-radius: 10px; */
-}
-
-.bg-dark {
-  background-color: #102038!important;
-}
-
-.navbar-dark .navbar-nav .nav-link {
-  color: #fff;
-  font-size:18px;
-  padding: 15px;
-}
-
-.navbar-toggler{
-  padding: 12px ;
-}
-
-.btn-light{
-  border-color: black;
-}
-.btn-light:focus{
-  border-color: black;
-}
+    font-family: 'Montserrat', sans-serif;
+  }
+  hr.solid {
+    border-top: 3px solid #bbb;
+  }
+  
+  .margin-bottom-space {
+    margin-bottom:10px
+  }
+  
+  .horizontal-space {
+    margin-right: 10px;
+  }
+  
+  th  {
+    font-size: 14px !important;
+  }
+  
+  .small-input {
+    width:100% !important
+  }
+  
+  td {
+    width: 80%;
+  }
+  
+  .anavlink {
+    background-color: #0d6efd;
+    color:#fff !important;
+    /* border-radius: 10px; */
+  }
+  
+  .bg-dark {
+    background-color: #102038!important;
+  }
+  
+  .navbar-dark .navbar-nav .nav-link {
+    color: #fff;
+    font-size:18px;
+    padding: 15px;
+  }
+  
+  .navbar-toggler{
+    padding: 12px ;
+  }
+  
+  .btn-light{
+    border-color: black;
+  }
+  .btn-light:focus{
+    border-color: black;
+  }

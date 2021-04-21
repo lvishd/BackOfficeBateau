@@ -1,5 +1,5 @@
 <h1 class="text-center">Bateau Thibault</h1>
-
+<!-- 
 <div class="row justify-content-md-center">
     <div class="col-sm-4">
         <div class="card">
@@ -21,4 +21,30 @@
             </div>
         </div>
     </div>
+</div> -->
+
+<!-- 
+<div class="chart-wrapper">
+    <canvas baseChart 
+        [datasets]="lineChartData" 
+        [labels]="lineChartLabels" 
+        [options]="lineChartOptions"
+        [colors]="lineChartColors" 
+        [legend]="lineChartLegend" 
+        [chartType]="lineChartType" 
+        [plugins]="lineChartPlugins">
+    </canvas>
+</div> -->
+
+<!-- <canvas id="myChart" width="700" height="400"></canvas> -->
+
+<div class="chart-wrapper">
+    <canvas baseChart 
+    [datasets]="barChartData"
+    [labels]="barChartLabels"
+    [options]="barChartOptions"
+    [plugins]="barChartPlugins"
+    [legend]="barChartLegend"
+    [chartType]="barChartType">
+  </canvas>
 </div>
