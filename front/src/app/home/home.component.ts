@@ -9,20 +9,76 @@ import { Color, Label, } from 'ng2-charts';
 })
 export class HomeComponent  {
 
-  
-  barChartOptions: ChartOptions = {
-    responsive: true,
+  constructor() { }
+  public barChartOptions = {
+    scaleShowVerticalLines: false,
+    responsive: true
   };
-  barChartLabels: Label[] = ['Apple', 'Banana', 'Kiwifruit', 'Blueberry', 'Orange', 'Grapes'];
-  barChartType: ChartType = 'bar';
-  barChartLegend = true;
-  barChartPlugins = [];
- 
-  barChartData: ChartDataSets[] = [
-    { data: [45, 37, 60, 70, 46, 33], label: 'Best Fruits' }
+  public barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  public barChartType = 'bar';
+  public barChartLegend = true;
+  public barChartData = [
+    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
+    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
   ];
- 
+  ngOnInit() {
+  }
 }
+
+
+
+
+
+
+  // const labels = ["boop"]
+//  data = {
+//   labels: ["boop"],
+//   datasets: [{
+//     label: 'My First Dataset',
+//     data: [65, 59, 80, 81, 56, 55, 40],
+//     backgroundColor: [
+//       'rgba(255, 99, 132, 0.2)',
+//       'rgba(255, 159, 64, 0.2)',
+//       'rgba(255, 205, 86, 0.2)',
+//       'rgba(75, 192, 192, 0.2)',
+//       'rgba(54, 162, 235, 0.2)',
+//       'rgba(153, 102, 255, 0.2)',
+//       'rgba(201, 203, 207, 0.2)'
+//     ],
+//     borderColor: [
+//       'rgb(255, 99, 132)',
+//       'rgb(255, 159, 64)',
+//       'rgb(255, 205, 86)',
+//       'rgb(75, 192, 192)',
+//       'rgb(54, 162, 235)',
+//       'rgb(153, 102, 255)',
+//       'rgb(201, 203, 207)'
+//     ],
+//     borderWidth: 1
+//   }]
+// };
+
+// }
+
+
+
+
+
+
+
+//   barChartOptions: ChartOptions = {
+//     responsive: true,
+//   };
+//   barChartLabels: Label[] = ['Apple', 'Banana', 'Kiwifruit', 'Blueberry', 'Orange', 'Grapes'];
+//   barChartType: ChartType = 'bar';
+//   barChartLegend = true;
+//   barChartPlugins = [];
+ 
+//   barChartData: ChartDataSets[] = [
+//     { data: [45, 37, 60, 70, 46, 33], label: 'Best Fruits' }
+//   ];
+ 
+// }
 
 //   canvas:any; ctx:any; canvas2:any; ctx2:any; canvas3:any; ctx3:any;
 // ...
@@ -34,6 +90,7 @@ export class HomeComponent  {
 // this.ctx = this.canvas.getContext('2d');
 // this.ctx2 = this.canvas2.getContext('2d');
 //   this.ctx3 = this.canvas3.getContext('2d');
+
 //     let myChart = new Chart(this.ctx, {
 //       type: 'bar',
 //       data: {
@@ -116,62 +173,62 @@ export class HomeComponent  {
 //     });
 // }
 // }
-  // title = 'angular8chartjs';
-  // canvas: any;
-  // ctx: any;
-  // ngAfterViewInit() {
+//   title = 'angular8chartjs';
+//   canvas: any;
+//   ctx: any;
+//   ngAfterViewInit() {
 
 
-  //   const boop = {
-  //     labels: ["J","F","M"],
-  //     datasets: [{
-  //       label: 'profits mois',
-  //       data: [65, 59, 80, 81, 56, 55, 40],
-  //       backgroundColor: [
-  //         'rgba(255, 99, 132, 0.2)',
-  //         'rgba(255, 159, 64, 0.2)',
-  //         'rgba(255, 205, 86, 0.2)',
-  //         'rgba(75, 192, 192, 0.2)',
-  //         'rgba(54, 162, 235, 0.2)',
-  //         'rgba(153, 102, 255, 0.2)',
-  //         'rgba(201, 203, 207, 0.2)'
-  //       ],
-  //       borderColor: [
-  //         'rgb(255, 99, 132)',
-  //         'rgb(255, 159, 64)',
-  //         'rgb(255, 205, 86)',
-  //         'rgb(75, 192, 192)',
-  //         'rgb(54, 162, 235)',
-  //         'rgb(153, 102, 255)',
-  //         'rgb(201, 203, 207)'
-  //       ],
-  //       borderWidth: 1
-  //     }]
-  //   };
+//     const boop = {
+//       labels: ["J","F","M"],
+//       datasets: [{
+//         label: 'profits mois',
+//         data: [65, 59, 80, 81, 56, 55, 40],
+//         backgroundColor: [
+//           'rgba(255, 99, 132, 0.2)',
+//           'rgba(255, 159, 64, 0.2)',
+//           'rgba(255, 205, 86, 0.2)',
+//           'rgba(75, 192, 192, 0.2)',
+//           'rgba(54, 162, 235, 0.2)',
+//           'rgba(153, 102, 255, 0.2)',
+//           'rgba(201, 203, 207, 0.2)'
+//         ],
+//         borderColor: [
+//           'rgb(255, 99, 132)',
+//           'rgb(255, 159, 64)',
+//           'rgb(255, 205, 86)',
+//           'rgb(75, 192, 192)',
+//           'rgb(54, 162, 235)',
+//           'rgb(153, 102, 255)',
+//           'rgb(201, 203, 207)'
+//         ],
+//         borderWidth: 1
+//       }]
+//     };
 
-  //   const config = {
-  //     type: 'bar',
-  //     data: boop,
-  //     options: {
-  //       scales: {
-  //         y: {
-  //           beginAtZero: true
-  //         }
-  //       }
-  //     },
-  //   };
+//     const config = {
+//       type: 'bar',
+//       data: boop,
+//       options: {
+//         scales: {
+//           y: {
+//             beginAtZero: true
+//           }
+//         }
+//       },
+//     };
 
     
-  //   this.canvas = document.getElementById('myChart');
-  //   this.ctx = this.canvas.getContext('2d');
-  //   let myChart = new Chart(this.ctx, {
-  //     type: 'bar',
-  //     data: boop,
-  //     options: {
-  //       responsive: false,
+//     this.canvas = document.getElementById('myChart');
+//     this.ctx = this.canvas.getContext('2d');
+//     let myChart = new Chart(this.ctx, {
+//       type: 'bar',
+//       data: boop,
+//       options: {
+//         responsive: false,
         
-  //     }
+//       }
       
-  //   });
-  // }
+//     });
+//   }
 // }
