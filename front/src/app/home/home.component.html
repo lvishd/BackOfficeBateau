@@ -36,7 +36,7 @@
     </canvas>
 </div> -->
 
-<canvas id="myChart" width="700" height="400"></canvas>
+<!-- <canvas id="myChart" width="700" height="400"></canvas> -->
 
 <div class="chart-wrapper">
     <canvas baseChart 
@@ -44,6 +44,8 @@
     [labels]="barChartLabels"
     [options]="barChartOptions"
     [plugins]="barChartOptions"
+    [colors]="lineChartColors" 
+
     [legend]="barChartLegend"
     [chartType]="barChartType">
   </canvas>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ChartType, ChartDataSets, ChartOptions} from 'chart.js';
 import { Color, Label, } from 'ng2-charts';
+import { ProductsService } from '../services/products.service';
+
 
 @Component({
   selector: 'app-home',
@@ -9,24 +11,130 @@ import { Color, Label, } from 'ng2-charts';
 })
 export class HomeComponent  {
 
-  constructor() { }
+
+  data
+  annees
+  mois 
+  sommeVenteMois=[]
+  sommeVenteJour=[]
+
+  constructor(public productsService: ProductsService) { }
+
+
+  ngOnInit(
+    ) 
+    
+    {
+      this.getSales()
+      console.log(this.data)
+    }
+  
+  getSales(){
+    this.productsService.getSales().subscribe(res => {
+      console.log(res)
+      console.log(res[0].date[0].annee)
+
+      this.data=res;
+    },
+      (err) => {
+        alert('failed loading json data');
+      });
+  }
+
+  parseDataYears(){
+
+  }
+
+  
+
+
+
+
+
+  
   public barChartOptions = {
     scaleShowVerticalLines: false,
-    responsive: true
+    responsive: true,
+    scales: {
+      yAxes: [{
+        id: 'Oil',
+        type: 'linear',
+        ticks: {
+          min: 0,
+          max: 130,
+        },
+        scaleLabel: {
+          display: true,
+          labelString: 'Bénéfice',
+        },
+        // annotation: {
+        //   annotations: [
+            // {
+            //   type: 'line',
+            //   mode: 'horizontal',
+            //   scaleID: 'Oil',
+            //   value: '122',
+            //   borderColor: 'orange',
+            //   borderWidth: 50,
+            //   label: {
+            //     enabled: true,
+            //     fontColor: 'orange',
+            //     content: 'Caution - 122\u00b0F'
+            //   }
+            // },
+            // {
+            //   type: 'line',
+            //   mode: 'horizontal',
+            //   scaleID: 'Oil',
+            //   value: '131',
+            //   yAxisID: 'Oil',
+            //   borderColor: 'red',
+            //   borderWidth: 2,
+            //   label: {
+            //     enabled: true,
+            //     fontColor: 'red',
+            //     content: 'Warning - 131\u00b0F'
+            //   }
+            // },
+            // {
+            //   type: 'box',
+            //   yScaleID: 'Oil',
+            //   yMin: 104,
+            //   yMax: 120.2,
+            //   backgroundColor: 'rgba(0,255,0,0.15)',
+            //   borderColor: 'rgba(0,255,0,0.05)',
+            //   borderWidth: 0,
+            // },
+            // {
+            //   type: 'box',
+            //   yScaleID: 'Water',
+            //   yMin: 9,
+            //   yMax: 12,
+            //   backgroundColor: 'rgba(70,70,255,0.15)',
+            //   borderColor: 'rgba(70,70,255,0.05)',
+            //   borderWidth: 0,
+            // },
+        //   ]
+        // }
+      }]
+    },
   };
-  public barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  lineChartColors: Color[] = [
+    {
+      // borderColor: 'black',
+      backgroundColor: 'rgba(255,150,100,0.70)',
+    },
+  ];
+  public barChartLabels = ['January', 'February', 'March', 'April', 'May', 'June','July', 'August', 'September', 'October', 'November', 'December'];
   public barChartType = 'bar';
   public barChartLegend = true;
   public barChartData = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
+    {data: [65, 59, 80, 81, 56, 55,65, 59, 80, 81, 56, 55], label: 'Poissons',  fontColor: 'blue'  },
+    {data: [28, 48, 40, 19, 86, 27,65, 40, 19, 86, 27,65], label: 'Crustacés'}
   ];
-  ngOnInit() {
-  }
+
+
 }
-
-
-
 
 
 
