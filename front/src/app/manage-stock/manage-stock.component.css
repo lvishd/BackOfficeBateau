@@ -13,3 +13,10 @@
 ul{
     list-style-type:none;
 }
+
+.center {
+    margin: auto;
+    width: 80%;
+    /* border: 3px solid green; */
+    padding: 10px;
+  }

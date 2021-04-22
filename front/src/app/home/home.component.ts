@@ -1,48 +1,106 @@
 import { Component, OnInit } from '@angular/core';
-import {ChartType, ChartDataSets, ChartOptions} from 'chart.js';
-import { Color, Label, } from 'ng2-charts';
+import { ChartType, ChartDataSets, ChartOptions } from 'chart.js';
+import { Color, Label } from 'ng2-charts';
 import { ProductsService } from '../services/products.service';
-
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
-export class HomeComponent  {
+export class HomeComponent {
+  data;
+  annees;
+  mois;
+  sommeVenteMois = [];
+  sommeVenteJour = [];
+  labels=[];
+  bool
+
+  constructor(public productsService: ProductsService) {
+    this.bool=false
+  }
+
+  ngOnInit() {
+    this.getSales();
+    console.log(this.data);
+    // this.parseDataYears();
+  }
+
+  changeGraphAnnee(){
+    this.bool=true
+    // console.log(this.bool)
+  }
+
+  changeGraphSemaine(){
+    this.bool=false
+    // console.log(this.bool)
+  }
+
+  getSales() {
+    this.productsService.getSales().subscribe(
+      (res) => {
+        console.log(res);
+        console.log(res[0].date[0].annee);
+
+        this.data = res;
+
+        this.parseDataWeek();
+        this.parseDataYear();
 
 
-  data
-  annees
-  mois 
-  sommeVenteMois=[]
-  sommeVenteJour=[]
-
-  constructor(public productsService: ProductsService) { }
-
-
-  ngOnInit(
-    ) 
-    
-    {
-      this.getSales()
-      console.log(this.data)
-    }
-  
-  getSales(){
-    this.productsService.getSales().subscribe(res => {
-      console.log(res)
-      console.log(res[0].date[0].annee)
-
-      this.data=res;
-    },
+        
+      },
       (err) => {
         alert('failed loading json data');
-      });
+      }
+    );
   }
 
-  parseDataYears(){
+  parseDataYear() {
+    for(let i = 0; i < 12; i++) {
+      this.sommeVenteMois[i]=0
+      // console.log(this.data[i])
+      // console.log("this.sommeVenteMois: ",i+1,"  " ,this.sommeVenteMois[i])
 
+    }
+    for(let i = 0; i < this.data.length; i++) {
+      // if(this.data[i].date[0].mois == i+1){
+      this.sommeVenteMois[this.data[i].date[0].mois-1]+=this.data[i].prix
+      // console.log("dans if")
+      console.log(this.data[i])
+      // console.log(this.sommeVenteMois[i])
+      // }
+
+    }
+    for(let i = 0; i < this.sommeVenteMois.length; i++) {
+      console.log("somme vente pour mois",i+1," " , this.sommeVenteMois[i])
+    }
+  }
+
+  parseDataWeek() {
+    for(let i = 0; i < 7; i++) {
+      this.sommeVenteJour[i]=0
+      // console.log(this.data[i])
+      // console.log("this.sommeVenteSemaine: ",i+1,"  " ,this.sommeVenteJour[i])
+
+
+    }
+    // console.log("boop",this.data[i].dow[0])
+
+    for(let i = 0; i < this.data.length; i++) {
+      // if(this.data[i].date[0].mois == i+1){
+      this.sommeVenteJour[this.data[i].date[0].dow-1]+=this.data[i].prix
+      // console.log("dans if")
+      // console.log(this.data[i])
+      // console.log(this.sommeVenteJour[i])
+      // console.log(this.sommeVenteJour[i])
+      // }
+
+    }
+    for(let i = 0; i < this.sommeVenteJour.length; i++) {
+      console.log("somme vente pour jour",i+1," " , this.sommeVenteJour[i])
+    }
   }
 
   
@@ -51,94 +109,82 @@ export class HomeComponent  {
 
 
 
-  
   public barChartOptions = {
     scaleShowVerticalLines: false,
     responsive: true,
     scales: {
-      yAxes: [{
-        id: 'Oil',
-        type: 'linear',
-        ticks: {
-          min: 0,
-          max: 130,
+      yAxes: [
+        {
+          id: 'Oil',
+          type: 'linear',
+          ticks: {
+            min: 0,
+            max: 130,
+          },
+          scaleLabel: {
+            display: true,
+            labelString: 'Bénéfice',
+          },
+    
         },
-        scaleLabel: {
-          display: true,
-          labelString: 'Bénéfice',
-        },
-        // annotation: {
-        //   annotations: [
-            // {
-            //   type: 'line',
-            //   mode: 'horizontal',
-            //   scaleID: 'Oil',
-            //   value: '122',
-            //   borderColor: 'orange',
-            //   borderWidth: 50,
-            //   label: {
-            //     enabled: true,
-            //     fontColor: 'orange',
-            //     content: 'Caution - 122\u00b0F'
-            //   }
-            // },
-            // {
-            //   type: 'line',
-            //   mode: 'horizontal',
-            //   scaleID: 'Oil',
-            //   value: '131',
-            //   yAxisID: 'Oil',
-            //   borderColor: 'red',
-            //   borderWidth: 2,
-            //   label: {
-            //     enabled: true,
-            //     fontColor: 'red',
-            //     content: 'Warning - 131\u00b0F'
-            //   }
-            // },
-            // {
-            //   type: 'box',
-            //   yScaleID: 'Oil',
-            //   yMin: 104,
-            //   yMax: 120.2,
-            //   backgroundColor: 'rgba(0,255,0,0.15)',
-            //   borderColor: 'rgba(0,255,0,0.05)',
-            //   borderWidth: 0,
-            // },
-            // {
-            //   type: 'box',
-            //   yScaleID: 'Water',
-            //   yMin: 9,
-            //   yMax: 12,
-            //   backgroundColor: 'rgba(70,70,255,0.15)',
-            //   borderColor: 'rgba(70,70,255,0.05)',
-            //   borderWidth: 0,
-            // },
-        //   ]
-        // }
-      }]
+      ],
     },
   };
   lineChartColors: Color[] = [
     {
       // borderColor: 'black',
-      backgroundColor: 'rgba(255,150,100,0.70)',
+      backgroundColor: '749cdd',
     },
   ];
-  public barChartLabels = ['January', 'February', 'March', 'April', 'May', 'June','July', 'August', 'September', 'October', 'November', 'December'];
-  public barChartType = 'bar';
-  public barChartLegend = true;
-  public barChartData = [
-    {data: [65, 59, 80, 81, 56, 55,65, 59, 80, 81, 56, 55], label: 'Poissons',  fontColor: 'blue'  },
-    {data: [28, 48, 40, 19, 86, 27,65, 40, 19, 86, 27,65], label: 'Crustacés'}
+  public barChartLabelsYear = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
   ];
 
+  public barChartLabelsWeek = [
+    'Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday',
+  ];
+  public barChartType = 'bar';
+  public barChartLegend = true;
 
+
+  public barChartDataYear = [
+    {
+      data: this.sommeVenteMois,
+      label: 'Bénéfices de Vente Année',
+      // fontColor: 'blue',
+    },
+
+    // {
+    //   data: [28, 48, 40, 19, 86, 27, 65, 40, 19, 86, 27, 65],
+    //   label: 'Crustacés',
+    // },
+  ];
+  public barChartDataWeek = [
+    {
+      data: this.sommeVenteJour,
+      label: 'Bénéfices de Vente Semaine',
+      // fontColor: 'blue',
+    },
+
+    // {
+    //   data: [28, 48, 40, 19, 86, 27, 65, 40, 19, 86, 27, 65],
+    //   label: 'Crustacés',
+    // },
+  ];
 }
 
-
-
-  // const labels = ["boop"]
+// const labels = ["boop"]
 //  data = {
 //   labels: ["boop"],
 //   datasets: [{
@@ -168,12 +214,6 @@ export class HomeComponent  {
 
 // }
 
-
-
-
-
-
-
 //   barChartOptions: ChartOptions = {
 //     responsive: true,
 //   };
@@ -181,11 +221,11 @@ export class HomeComponent  {
 //   barChartType: ChartType = 'bar';
 //   barChartLegend = true;
 //   barChartPlugins = [];
- 
+
 //   barChartData: ChartDataSets[] = [
 //     { data: [45, 37, 60, 70, 46, 33], label: 'Best Fruits' }
 //   ];
- 
+
 // }
 
 //   canvas:any; ctx:any; canvas2:any; ctx2:any; canvas3:any; ctx3:any;
@@ -225,7 +265,7 @@ export class HomeComponent  {
 //     }
 //       }
 //     });
-  
+
 //   let myChart2 = new Chart(this.ctx2, {
 //       type: 'pie',
 //       data: {
@@ -252,7 +292,7 @@ export class HomeComponent  {
 //     }
 //       }
 //     });
-  
+
 //   let myChart3 = new Chart(this.ctx3, {
 //       type: 'line',
 //       data: {
@@ -285,7 +325,6 @@ export class HomeComponent  {
 //   canvas: any;
 //   ctx: any;
 //   ngAfterViewInit() {
-
 
 //     const boop = {
 //       labels: ["J","F","M"],
@@ -326,7 +365,6 @@ export class HomeComponent  {
 //       },
 //     };
 
-    
 //     this.canvas = document.getElementById('myChart');
 //     this.ctx = this.canvas.getContext('2d');
 //     let myChart = new Chart(this.ctx, {
@@ -334,9 +372,9 @@ export class HomeComponent  {
 //       data: boop,
 //       options: {
 //         responsive: false,
-        
+
 //       }
-      
+
 //     });
 //   }
 // }

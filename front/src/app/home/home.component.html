@@ -38,15 +38,54 @@
 
 <!-- <canvas id="myChart" width="700" height="400"></canvas> -->
 
-<div class="chart-wrapper">
-    <canvas baseChart 
-    [datasets]="barChartData"
-    [labels]="barChartLabels"
-    [options]="barChartOptions"
-    [plugins]="barChartOptions"
-    [colors]="lineChartColors" 
+<div class="center">
 
-    [legend]="barChartLegend"
-    [chartType]="barChartType">
-  </canvas>
+    <button
+class="btn-outline-dark horizontal-space"
+(click)="changeGraphAnnee()"
+>
+Année
+</button>
+
+<button
+class="btn-outline-dark horizontal-space"
+(click)="changeGraphSemaine()"
+>
+Semaine
+</button>
+
 </div>
+
+<div *ngIf="bool; then thenBlock; else elseBlock"></div>
+<ng-template #thenBlock>
+  <div class="chart-wrapper center">
+    <canvas
+      baseChart
+      [datasets]="barChartDataYear"
+      [labels]="barChartLabelsYear"
+      [options]="barChartOptions"
+      [plugins]="barChartOptions"
+      [colors]="lineChartColors"
+      [legend]="barChartLegend"
+      [chartType]="barChartType"
+    >
+    </canvas>
+  </div>
+
+  </ng-template
+>
+<ng-template #elseBlock>
+  <div class="chart-wrapper center">
+    <canvas
+      baseChart
+      [datasets]="barChartDataWeek"
+      [labels]="barChartLabelsWeek"
+      [options]="barChartOptions"
+      [plugins]="barChartOptions"
+      [colors]="lineChartColors"
+      [legend]="barChartLegend"
+      [chartType]="barChartType"
+    >
+    </canvas>
+  </div>
+</ng-template>
