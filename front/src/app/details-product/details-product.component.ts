@@ -63,7 +63,7 @@ export class DetailsProductComponent implements OnInit {
       this.products = res;
       // this.product=this.products[0];
       // console.log(this.products[1])
-      console.log(this.products)
+      // console.log(this.product)
 
       
 
