@@ -1,0 +1,57 @@
+[
+    {
+        "id" : "1",
+        "categorie" : "0",
+        "date" : [{
+            "jour" : "22",
+            "mois" : "4",
+            "annee" : "2021",
+            "dow" : "jeudi"
+                 }],
+        "prix" : "12"
+    },
+    {
+        "id" : "2",
+        "categorie" : "0",
+        "date" : [{
+            "jour" : "22",
+            "mois" : "3",
+            "annee" : "2021",
+            "dow" : "mardi"
+                 }],
+        "prix" : "21"
+    },
+    {
+        "id" : "3",
+        "categorie" : "1",
+        "date" : [{
+            "jour" : "22",
+            "mois" : "2",
+            "annee" : "2021",
+            "dow" : "lundi"
+                 }],
+        "prix" : "42"
+    },
+    {
+        "id" : "4",
+        "categorie" : "2",
+        "date" : [{
+            "jour" : "22",
+            "mois" : "3",
+            "annee" : "2021",
+            "dow" : "mardi"
+                 }],
+        "prix" : "24"
+    },
+    {
+        "id" : "5",
+        "categorie" : "1",
+        "date" : [{
+            "jour" : "22",
+            "mois" : "2",
+            "annee" : "2021",
+            "dow" : "lundi"
+                 }],
+        "prix" : "13"
+    }
+]

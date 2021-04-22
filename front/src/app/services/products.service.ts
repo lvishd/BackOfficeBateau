@@ -15,6 +15,7 @@ export class ProductsService {
   getProducts(){
     return this.http.get(this.urlApi + "/infoproducts/");
   }
+
   setPromotion(id, discount) {
     return this.http.get(this.urlApi + "/modifyDiscount/" + id + "/" + discount + "/");
   }
@@ -26,5 +27,9 @@ export class ProductsService {
   }
   getProductCategories(category){
     return this.http.get(this.urlApi + "/" + category + "/");
+  }
+
+  getSales(){
+    return this.http.get("../assets/bdSales.json");
   }
 }
