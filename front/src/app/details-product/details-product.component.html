@@ -9,6 +9,10 @@
         <!-- <li class="nav-item">
           <a routerLinkActive=anavlink class="nav-link" aria-current="page" routerLink="/login">Login</a>
         </li> -->
+        <li class="nav-item center">
+          <a routerLinkActive=anavlink class="nav-link" aria-current="page" routerLink="/login">Disconnect</a>
+        </li>
+      
         <li class="nav-item">
           <a routerLinkActive=anavlink class="nav-link" aria-current="page" routerLink="/home">Home</a>
         </li>
@@ -51,7 +55,7 @@
       {{ product.name }}
     </h1>
 
-    <h1>{{ salePrice }} €</h1>
+    <li>Prix de Vente :</li><h1> {{ salePrice }} €</h1>
     <li>/ {{ product.unit }}</li>
     <li>Prix sans promo : {{ product.price }} €</li>
 

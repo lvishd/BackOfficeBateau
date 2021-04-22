@@ -68,7 +68,7 @@ export class HomeComponent {
       // if(this.data[i].date[0].mois == i+1){
       this.sommeVenteMois[this.data[i].date[0].mois-1]+=this.data[i].prix
       // console.log("dans if")
-      console.log(this.data[i])
+      // console.log(this.data[i])
       // console.log(this.sommeVenteMois[i])
       // }
 
@@ -123,7 +123,7 @@ export class HomeComponent {
           },
           scaleLabel: {
             display: true,
-            labelString: 'Bénéfice',
+            labelString: 'Euros',
           },
     
         },
@@ -133,7 +133,7 @@ export class HomeComponent {
   lineChartColors: Color[] = [
     {
       // borderColor: 'black',
-      backgroundColor: '749cdd',
+      backgroundColor: '#1a93ad',
     },
   ];
   public barChartLabelsYear = [
