@@ -1,8 +1,7 @@
+python -m pip install djangorestframework-simplejwt
+python -m pip install django-cors-headers
+python -m pip install PyJWT
 python manage.py createsuperuser
-oleg
-oleg@cfa.com
-root2021
-root2021
 python manage.py makemigrations
 python manage.py migrate
 python manage.py refreshCoquillagesList
