@@ -1,0 +1,89 @@
+<!-- <p class="text-center">Veuillez saisir le produit dont vous voulez voir les informations</p> -->
+
+<div class="dropdown text-center margin-bottom-space">
+  <button
+    class="btn btn-light dropdown-toggle"
+    type="button"
+    id="dropdownMenuButton1"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    <!-- {{ product.name }} -->
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li *ngFor="let item of products">
+      <button class="dropdown-item" (click)="onSelectProduct(item)">
+        {{ item.name }}
+      </button>
+    </li>
+  </ul>
+</div>
+
+<!-- <li *ngIf="product.sale">Hello World!</li> -->
+
+<div id="infosProduct" class="card col-sm-6 d-flex p-2 container-fluid">
+  <ul>
+    <h1>
+      {{ product.name }}
+    </h1>
+
+    <li>Prix de Vente :</li>
+    <h1>{{ salePrice }} €</h1>
+    <li>/ {{ product.unit }}</li>
+    <li>Prix sans promo : {{ product.price }} €</li>
+
+    <br />
+    <br />
+
+    <li>Promotion de {{ product.discount }} %</li>
+    <div>
+      <input
+        type="number"
+        class="col-xs-2 margin-bottom-space"
+        id="newPromotion"
+        placeholder="%"
+        [(ngModel)]="newPromotion"
+      />
+
+      <button
+        class="btn-outline-dark horizontal-space"
+        (click)="onModifyPromotion(product); addSale(product)"
+      >
+        Appliquer
+      </button>
+    </div>
+
+    <br />
+    <br />
+    <br />
+
+    <div class="margin-bottom-space">
+      <ul class="container-fluid">
+        <li>En stock : {{ product.quantityInStock }}</li>
+        <li class="raw">
+          <div class="raw"></div>
+
+          <div class="raw">
+            <input
+              type="number"
+              class="col-xs-2 margin-bottom-space"
+              id="newPromotion"
+              placeholder="Quantité"
+              [(ngModel)]="newQuantity"
+            />
+            <button
+              class="btn-outline-dark horizontal-space"
+              (click)="addQuantity(product)"
+            >
+              Appliquer
+            </button>
+
+            <!-- <button class="btn btn-danger " (click)="removeQuantity(product)">Enlever</button> -->
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <li></li>
+  </ul>
+</div>

@@ -1,0 +1,22 @@
+.myFloat{
+    position:fixed;
+    width:60px;
+    height:60px;
+    bottom:40px;
+    right:40px;
+    /* top : 150px */
+}
+#infosProduct{
+    text-align: center;
+}
+
+ul{
+    list-style-type:none;
+}
+
+.center {
+    margin: auto;
+    width: 80%;
+    /* border: 3px solid green; */
+    /* padding: 10px; */
+  }
