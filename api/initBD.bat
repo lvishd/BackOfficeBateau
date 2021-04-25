@@ -1,3 +1,8 @@
+python manage.py createsuperuser
+oleg
+oleg@cfa.com
+root2021
+root2021
 python manage.py makemigrations
 python manage.py migrate
 python manage.py refreshCoquillagesList
